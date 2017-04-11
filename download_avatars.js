@@ -36,7 +36,11 @@ function downloadImageByURL(url, filePath) {
     .pipe(fs.createWriteStream(filePath));
 }
 
-getRepoContributors(repoOwner, repoName, jinnyCallback);
+if (repoOwner && repoName) {
+  getRepoContributors(repoOwner, repoName, jinnyCallback);
+} else {
+  console.log("Please put in two arguments in command line, first is the owner, second is the name");
+}
 
 
 
