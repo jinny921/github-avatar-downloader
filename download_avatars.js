@@ -30,9 +30,15 @@ function jinnyCallback(err, result, body) {
 
 };
 
+
 function downloadImageByURL(url, filePath) {
-  request.get(url)
-    .pipe(fs.createWriteStream(filePath));//use pipe function to save the response images to the set path
+  //if avatar file doesn't exist, create the dir
+  if (!fs.existsSync('./avatar/')) {
+    fs.mkdir('./avatar');
+  };
+    request.get(url)
+    //use pipe function to save the response images to the set path
+    .pipe(fs.createWriteStream(filePath));
 }
 
 if (repoOwner && repoName) {
@@ -40,8 +46,6 @@ if (repoOwner && repoName) {
 } else {
   console.log("Please put in two arguments in command line, first is the owner, second is the name");
 }
-
-
 
 
 
