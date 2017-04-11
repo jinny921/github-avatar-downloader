@@ -1,5 +1,5 @@
-const GITHUB_USER = "jinny921";
-const GITHUB_TOKEN = "bafb585d2e313075a75f771f8d0dff7c4010813c";
+const GITHUB_USER = "...";
+const GITHUB_TOKEN = "...";
 
 const request = require('request');
 const fs = require('fs');
@@ -7,7 +7,6 @@ const repoOwner = process.argv[2];
 const repoName = process.argv[3];
 
 console.log('Welcome to the GitHub Avatar Downloader!');
-
 
 function getRepoContributors(repoOwner, repoName, cb) {
   const requestOptions = {
@@ -33,7 +32,7 @@ function jinnyCallback(err, result, body) {
 
 function downloadImageByURL(url, filePath) {
   request.get(url)
-    .pipe(fs.createWriteStream(filePath));
+    .pipe(fs.createWriteStream(filePath));//use pipe function to save the response images to the set path
 }
 
 if (repoOwner && repoName) {
