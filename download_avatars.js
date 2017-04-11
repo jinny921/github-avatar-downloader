@@ -16,18 +16,20 @@ function getRepoContributors(repoOwner, repoName, cb) {
       'User-Agent': 'Jinny Macbook OSX v11.2'
     }
   };
-  // console.log(requestURL);
 
   request.get(requestOptions, cb);
 }
 
 function jinnyCallback(err, result, body) {
   if (result) {
-    console.log(body);// do stuff with result
+    const resultObject = JSON.parse(body);
+    resultObject.forEach(function(element) {
+      console.log('avatar_url: ', element.avatar_url);
+    });
   } else {
     console.log("it's an error!!!" + err.code);
-  }
+  };
 
-}
+};
 
-getRepoContributors('jquery', 'jquery', jinnyCallback)
+getRepoContributors('jquery', 'jquery', jinnyCallback);
